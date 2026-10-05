@@ -1,0 +1,242 @@
+\documentclass[12pt,a4paper,french]{report}
+
+% =========================================================
+% PACKAGES
+% =========================================================
+
+\usepackage[french]{babel}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{ragged2e}
+
+\usepackage{tocloft}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}  % dots
+\renewcommand{\cftchapafterpnum}{\cftparfillskip}
+\renewcommand{\cftchapfont}{\bfseries}
+\renewcommand{\cftchappagefont}{\bfseries}
+
+\usepackage{fancyhdr}
+
+\usepackage[hidelinks,hypertexnames=false]{hyperref}   % always last
+% =========================================================
+% PAGE SETTINGS
+% =========================================================
+
+\geometry{
+    top=2cm,
+    bottom=2cm,
+    left=2cm,
+    right=2cm
+}
+
+\onehalfspacing
+\justifying
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\emergencystretch=3em
+\sloppy
+
+
+% =========================================================
+% HEADER AND FOOTER
+% =========================================================
+
+\pagestyle{fancy}
+
+\fancyhf{} % Clear default header/footer
+
+% Header: chapter number and title on the right
+\fancyhead[R]{\nouppercase{\leftmark}}
+
+% Footer: page number centered
+\fancyfoot[C]{\thepage}
+
+% Header line
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Footer line
+\renewcommand{\footrulewidth}{0pt}
+
+% Chapter opening pages: no header
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% =========================================================
+% TABLE OF CONTENTS SETTINGS
+% =========================================================
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+
+% =========================================================
+% DOCUMENT
+% =========================================================
+
+\begin{document}
+% =========================================================
+% COVER PAGE
+% =========================================================
+
+\begin{titlepage}
+    \centering
+
+    % Institutional header
+    {\small \textbf{MINISTÈRE DE L'ENSEIGNEMENT SUPÉRIEUR ET DE LA}}\\
+    {\small \textbf{RECHERCHE SCIENTIFIQUE}}\\[0.15cm]
+
+    {\small \textbf{UNIVERSITÉ DE SOUSSE}}\\[0.15cm]
+
+    {\small \textbf{INSTITUT SUPÉRIEUR D'INFORMATIQUE}}\\
+    {\small \textbf{ET DES TECHNOLOGIES DE COMMUNICATION}}\\[0.7cm]
+
+    % Logo
+    \includegraphics[width=0.20\textwidth]{figures/logo-isitcom.png}\\[0.7cm]
+
+    % Report type
+    {\large \textbf{Rapport de mini-projet}}\\[0.25cm]
+
+    {\normalsize
+    Spécialité : Systèmes Embarqués et Internet des Objets
+    }\\[0.8cm]
+
+    % Project title
+    {\LARGE \textbf{PET-Recycling-Filament-System}}\\[0.25cm]
+
+    {\normalsize
+    \textit{Système IoT pour le Recyclage du PET}
+    }\\[1.0cm]
+
+    % Author
+    {\normalsize Réalisé par :}\\[0.15cm]
+    {\normalsize \textbf{Anouer Chouikh}}\\[0.7cm]
+
+    % Supervisor
+    {\normalsize Encadré par :}\\[0.15cm]
+    {\normalsize \textbf{Melek Chouchene}}\\[1.0cm]
+
+    % Horizontal line
+    \rule{0.75\textwidth}{0.5pt}\\[0.4cm]
+
+    % Academic year
+    {\normalsize \textbf{Année universitaire 2026/2027}}\\[0.8cm]
+
+    % Footer
+    {\small
+    Institut Supérieur d'Informatique et des Technologies de Communication\\
+    Tél/Fax : +216 73 37 15 71 / +216 73 38 44 11
+    }
+
+\end{titlepage}
+\pagenumbering{roman}
+
+
+
+% =========================================================
+% ACKNOWLEDGEMENTS
+% =========================================================
+
+\chapter*{Remerciements}
+
+Nous remercions toutes les personnes qui ont contribué, directement ou
+indirectement, à la réalisation de ce projet.
+
+Nous exprimons particulièrement notre gratitude à notre encadrant pour
+son accompagnement, ses conseils et ses orientations tout au long de
+ce travail.
+
+Nous remercions également l'Institut Supérieur d'Informatique et des
+Technologies de Communication pour les connaissances et les ressources
+mises à notre disposition.
+
+% =========================================================
+% TABLE OF CONTENTS
+% =========================================================
+\newpage
+
+
+\tableofcontents
+
+\newpage
+\listoffigures
+
+
+% =========================================================
+% CHAPTER 1
+% =========================================================
+
+\chapter{Description du Projet}
+\pagenumbering{arabic}
+
+\input{chapters/chapitre1.tex}
+
+
+% =========================================================
+% CHAPTER 2
+% =========================================================
+
+\chapter{Conception et Étude des Besoins}
+
+\input{chapters/chapitre2.tex}
+
+
+% =========================================================
+% CHAPTER 3
+% =========================================================
+
+\chapter{Réalisation}
+
+\input{chapters/chapitre3.tex}
+
+
+% =========================================================
+% CONCLUSION
+% =========================================================
+
+\chapter*{Conclusion générale}
+
+\addcontentsline{toc}{chapter}{Conclusion générale}
+
+Ce projet a permis de concevoir et de réaliser une solution IoT dédiée
+au recyclage du plastique PET en filament pour impression 3D.
+
+La réalisation combine une architecture matérielle basée sur des
+systèmes embarqués avec une architecture logicielle permettant la
+supervision et l'exploitation des données issues de la machine.
+
+Les résultats obtenus constituent une base permettant de poursuivre
+l'amélioration du système, notamment au niveau de la fiabilité, de la
+communication temps réel et de l'optimisation du processus de recyclage.
+
+
+% =========================================================
+% BIBLIOGRAPHY
+% =========================================================
+
+\newpage
+
+\addcontentsline{toc}{chapter}{Bibliographie}
+
+\bibliographystyle{plain}
+\bibliography{bibliography/references}
+
+
+% =========================================================
+% END
+% =========================================================
+
+\end{document}
+
+
+% xelatex -interaction=nonstopmode -file-line-error main.tex

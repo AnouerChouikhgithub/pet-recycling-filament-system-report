@@ -1,0 +1,354 @@
+% =========================================================
+% CHAPITRE 2 — CONCEPTION ET ÉTUDE DES BESOINS
+% =========================================================
+
+\section{Introduction}
+
+Après avoir présenté le contexte général du projet, sa problématique et la
+solution proposée, ce chapitre est consacré à l'étude des besoins et à la
+conception du système \textit{3awedlou}.
+
+L'objectif de cette étape est de définir les fonctionnalités attendues,
+les contraintes auxquelles le système doit répondre ainsi que
+l'architecture générale permettant d'assurer la communication entre la
+machine, les systèmes embarqués, le serveur et les applications clientes.
+
+La conception est organisée autour de plusieurs aspects complémentaires :
+l'analyse des besoins fonctionnels et non fonctionnels, l'étude de
+l'enchaînement des données, la définition de l'architecture matérielle et
+logicielle, l'étude des protocoles de communication IoT ainsi que la
+modélisation UML du système.
+
+\section{Besoins fonctionnels}
+
+Les besoins fonctionnels décrivent les services et les fonctionnalités que
+le système doit fournir à ses différents utilisateurs et composants.
+
+Dans le cadre du projet \textit{3awedlou}, les principales fonctionnalités
+identifiées sont les suivantes.
+
+\subsection{Gestion des utilisateurs}
+
+Le système doit permettre aux utilisateurs autorisés d'accéder à
+l'application et d'utiliser les fonctionnalités correspondant à leurs
+droits d'accès. L'authentification permet notamment de sécuriser l'accès
+aux informations relatives aux machines et aux productions.
+
+\subsection{Gestion des machines}
+
+L'application doit permettre de gérer les machines connectées au système.
+Pour chaque machine, les informations relatives à son identification et à
+son état doivent être accessibles.
+
+Le système doit notamment permettre de connaître l'état courant d'une
+machine, par exemple :
+
+\begin{itemize}
+    \item en attente ;
+    \item en cours de chauffage ;
+    \item en extrusion ;
+    \item en pause ;
+    \item en erreur ;
+    \item hors ligne.
+\end{itemize}
+
+\subsection{Acquisition des données}
+
+La machine doit être capable de mesurer et de transmettre différentes
+données relatives à son fonctionnement. Ces données peuvent notamment
+concerner la température, l'état du moteur, l'état général de la machine
+et les informations relatives à une session de production.
+
+\subsection{Supervision de la machine}
+
+Le système doit permettre à l'utilisateur de consulter l'état de la
+machine et les données collectées. La supervision permet ainsi de suivre
+le fonctionnement du système sans avoir à intervenir directement sur la
+machine.
+
+\subsection{Gestion des sessions de fonctionnement}
+
+Une session doit permettre d'identifier une période de fonctionnement de
+la machine. Le système doit pouvoir enregistrer les informations
+associées au démarrage, au fonctionnement et à l'arrêt d'une session.
+
+\subsection{Suivi de la production}
+
+Le système doit permettre d'enregistrer les informations relatives à la
+production de filament. Ces informations peuvent notamment comprendre
+l'identification d'un lot, les paramètres de production et les données
+associées au processus de transformation.
+
+\subsection{Communication temps réel}
+
+La solution doit permettre la transmission des données entre la machine et
+le système logiciel avec un délai suffisamment faible pour assurer une
+supervision efficace.
+
+Cette communication repose sur une architecture IoT utilisant le protocole
+MQTT, qui sera étudié plus en détail dans les sections suivantes.
+
+\section{Besoins non fonctionnels}
+
+Les besoins non fonctionnels définissent les contraintes et les propriétés
+qualitatives que le système doit respecter au-delà de ses fonctionnalités
+principales.
+
+\subsection{Fiabilité}
+
+Le système doit fonctionner de manière stable pendant les différentes
+phases de fonctionnement de la machine. Les échanges de données doivent
+également être suffisamment fiables pour éviter la perte d'informations
+importantes.
+
+\subsection{Sécurité}
+
+L'accès aux fonctionnalités de l'application et aux données du système
+doit être protégé. L'authentification des utilisateurs ainsi que la
+sécurisation des communications constituent donc des éléments importants
+de l'architecture.
+
+\subsection{Performance}
+
+Le système doit pouvoir traiter les données provenant de la machine sans
+introduire de délais importants dans la supervision. Les communications
+doivent donc rester suffisamment rapides pour permettre un suivi proche du
+temps réel.
+
+\subsection{Évolutivité}
+
+L'architecture doit permettre l'ajout de nouvelles machines, de nouveaux
+capteurs ou de nouvelles fonctionnalités sans nécessiter une
+reconception complète du système.
+
+\subsection{Maintenabilité}
+
+La séparation entre la partie matérielle, les systèmes embarqués, le
+backend et les applications clientes doit faciliter la maintenance et
+l'évolution du projet.
+
+\subsection{Ergonomie}
+
+Les interfaces de supervision doivent présenter les informations de
+manière claire et compréhensible. L'utilisateur doit pouvoir identifier
+rapidement l'état de la machine et les principales données de production.
+
+\section{Schéma d'enchaînement des données}
+
+Le fonctionnement global du système repose sur une succession d'échanges
+de données entre la machine, les systèmes embarqués, le serveur et les
+applications clientes.
+
+La machine constitue la source principale des données. Les capteurs
+permettent d'acquérir les informations relatives à son fonctionnement,
+tandis que l'Arduino Mega assure une partie du contrôle local des
+actionneurs et du processus d'extrusion.
+
+L'ESP32 joue le rôle d'interface de communication entre la partie
+embarquée et l'infrastructure réseau. Les données provenant de la machine
+sont transmises par l'intermédiaire du protocole MQTT vers le broker IoT.
+
+Le backend récupère ensuite les messages nécessaires, traite les données
+et les enregistre dans la base de données. Les applications web et mobile
+peuvent alors récupérer et afficher ces informations à l'utilisateur.
+
+Le cheminement général des données peut être résumé comme suit :
+
+\begin{center}
+\textbf{
+Machine $\rightarrow$ Arduino Mega $\rightarrow$ ESP32
+$\rightarrow$ MQTT Broker $\rightarrow$ Backend
+$\rightarrow$ Applications Web / Mobile
+}
+\end{center}
+
+Dans le sens inverse, les commandes provenant des applications peuvent
+suivre le chemin opposé afin d'être transmises jusqu'à la machine.
+
+\section{Architecture du système}
+
+L'architecture de \textit{3awedlou} est conçue selon une approche
+distribuée permettant de séparer les responsabilités des différents
+composants.
+
+Elle peut être divisée en plusieurs niveaux :
+
+\begin{enumerate}
+    \item \textbf{Couche physique :} machine de recyclage, capteurs,
+    moteur, système de chauffage et autres actionneurs.
+    
+    \item \textbf{Couche embarquée :} Arduino Mega et ESP32 assurant
+    respectivement le contrôle local et la communication réseau.
+    
+    \item \textbf{Couche IoT :} broker MQTT assurant l'échange de
+    messages entre les équipements connectés et les services logiciels.
+    
+    \item \textbf{Couche serveur :} backend chargé de l'authentification,
+    de la gestion des machines, du traitement des données et de leur
+    stockage.
+    
+    \item \textbf{Couche application :} applications web et mobile
+    permettant la supervision et l'exploitation des données.
+\end{enumerate}
+
+Cette séparation permet de réduire le couplage entre les différentes
+parties du système et facilite son évolution.
+
+\section{Protocoles IoT}
+
+La communication constitue un élément essentiel d'une architecture IoT.
+Le choix du protocole doit tenir compte des caractéristiques du système,
+notamment la quantité de données échangées, les ressources disponibles,
+la latence souhaitée et la fiabilité des communications.
+
+Plusieurs protocoles peuvent être envisagés pour assurer la communication
+entre les équipements et les services logiciels.
+
+\subsection{MQTT}
+
+MQTT (\textit{Message Queuing Telemetry Transport}) est un protocole de
+communication léger basé sur un modèle \textit{publish/subscribe}. Les
+équipements publient des messages sur des sujets (\textit{topics}) et les
+clients intéressés s'abonnent aux sujets correspondants.
+
+Cette architecture permet de découpler les producteurs et les
+consommateurs de données.
+
+\subsection{HTTP/HTTPS}
+
+HTTP est largement utilisé pour les communications entre applications
+clientes et serveurs. Il repose principalement sur un modèle
+requête/réponse et convient particulièrement aux API web.
+
+Dans une architecture IoT, HTTP peut être utilisé pour certaines
+opérations nécessitant une communication avec le backend, mais il est
+moins adapté qu'un protocole orienté messages pour certaines
+communications temps réel entre équipements.
+
+\subsection{WebSocket}
+
+WebSocket permet d'établir une communication persistante entre un client
+et un serveur. Il est particulièrement adapté aux applications nécessitant
+des mises à jour en temps réel de l'interface utilisateur.
+
+Il peut donc constituer une solution intéressante pour la communication
+entre le backend et les interfaces web ou mobiles.
+
+\section{Choix du protocole}
+
+Après comparaison des différentes solutions, MQTT a été retenu comme
+protocole principal de communication IoT du projet.
+
+Ce choix est principalement motivé par son modèle
+\textit{publish/subscribe}, qui permet de découpler la machine du backend
+et des applications clientes.
+
+Le broker MQTT joue le rôle d'intermédiaire central. La machine peut ainsi
+publier ses données sans avoir à connaître directement les applications
+qui les utiliseront. De la même manière, les applications ou le backend
+peuvent publier des commandes sur des sujets auxquels l'ESP32 est abonné.
+
+Cette architecture présente également l'avantage de faciliter
+l'intégration de plusieurs machines dans le futur.
+
+MQTT est donc utilisé comme mécanisme principal pour les échanges de
+données IoT, tandis que les technologies web classiques peuvent être
+utilisées pour les interactions entre les applications clientes et le
+backend.
+
+\section{Diagramme UML}
+
+La modélisation UML permet de représenter le comportement du système et
+les interactions entre ses différents acteurs et composants.
+
+Dans le cadre du projet \textit{3awedlou}, plusieurs diagrammes UML sont
+utilisés afin de représenter les fonctionnalités principales, le
+déroulement des processus et les échanges entre les composants.
+
+\subsection{Diagramme de cas d'utilisation}
+
+Le diagramme de cas d'utilisation permet d'identifier les acteurs
+interagissant avec le système ainsi que les principales fonctionnalités
+auxquelles ils ont accès.
+
+Dans le système \textit{3awedlou}, l'utilisateur peut notamment consulter
+l'état d'une machine, suivre les données de fonctionnement et consulter
+les informations relatives à la production.
+
+Le système embarqué constitue également un élément important de
+l'architecture puisqu'il fournit les données issues de la machine et peut
+recevoir des commandes provenant du système logiciel.
+
+% Insérer ici le diagramme de cas d'utilisation.
+%
+% Exemple :
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.9\textwidth]{figures/use-case.png}
+%     \caption{Diagramme de cas d'utilisation}
+%     \label{fig:use-case}
+% \end{figure}
+
+\subsection{Diagramme d'activité}
+
+Le diagramme d'activité permet de représenter l'enchaînement des
+principales étapes du fonctionnement du système.
+
+Il peut notamment représenter le processus allant du démarrage de la
+machine jusqu'à la production du filament, en passant par les phases de
+chauffage, de vérification des conditions de fonctionnement et
+d'extrusion.
+
+% Insérer ici le diagramme d'activité.
+%
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.9\textwidth]{figures/activity-diagram.png}
+%     \caption{Diagramme d'activité du système}
+%     \label{fig:activity}
+% \end{figure}
+
+\subsection{Diagramme de séquence}
+
+Le diagramme de séquence permet de représenter les échanges de messages
+entre les différents composants du système au cours d'un scénario donné.
+
+Dans le cas de \textit{3awedlou}, un scénario de supervision peut par
+exemple suivre le cheminement d'une donnée de télémétrie depuis la machine
+jusqu'à l'application.
+
+La donnée est d'abord acquise par le système embarqué, puis transmise à
+l'ESP32. Celui-ci publie le message sur le broker MQTT. Le backend reçoit
+le message, traite les informations et les enregistre si nécessaire. Les
+applications peuvent ensuite exploiter ces données afin de mettre à jour
+l'interface de supervision.
+
+% Insérer ici le diagramme de séquence.
+%
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.95\textwidth]{figures/sequence-diagram.png}
+%     \caption{Diagramme de séquence de transmission des données}
+%     \label{fig:sequence}
+% \end{figure}
+
+\section{Conclusion}
+
+Ce chapitre a permis d'identifier les besoins fonctionnels et non
+fonctionnels du système \textit{3awedlou} et de définir son architecture
+générale.
+
+L'étude a également permis de décrire le cheminement des données entre la
+machine, les systèmes embarqués, l'infrastructure IoT, le backend et les
+applications clientes. Plusieurs protocoles ont été étudiés et MQTT a été
+retenu comme protocole principal pour les communications IoT en raison de
+son modèle publish/subscribe et de son adéquation avec les besoins du
+projet.
+
+Enfin, les diagrammes UML permettent de compléter la conception en
+représentant les fonctionnalités du système, le déroulement de ses
+processus et les échanges entre ses différents composants.
+
+Le chapitre suivant sera consacré à la réalisation du système, notamment
+à la mise en œuvre de la partie matérielle, des systèmes embarqués, de la
+communication IoT, du backend et des interfaces de supervision.

@@ -1,0 +1,78 @@
+\babel@toc {french}{}\relax 
+\contentsline {chapter}{\numberline {1}Description du Projet}{1}{chapter.2}%
+\contentsline {section}{\numberline {1.1}Introduction}{1}{section.3}%
+\contentsline {section}{\numberline {1.2}Problématique}{1}{section.4}%
+\contentsline {section}{\numberline {1.3}Solution Proposée}{2}{section.5}%
+\contentsline {section}{\numberline {1.4}Conclusion}{3}{section.6}%
+\contentsline {chapter}{\numberline {2}Conception et Étude des Besoins}{4}{chapter.7}%
+\contentsline {section}{\numberline {2.1}Introduction}{4}{section.8}%
+\contentsline {section}{\numberline {2.2}Besoins fonctionnels}{4}{section.9}%
+\contentsline {subsection}{\numberline {2.2.1}Gestion des utilisateurs}{4}{subsection.10}%
+\contentsline {subsection}{\numberline {2.2.2}Gestion des machines}{4}{subsection.11}%
+\contentsline {subsection}{\numberline {2.2.3}Acquisition des données}{5}{subsection.12}%
+\contentsline {subsection}{\numberline {2.2.4}Supervision de la machine}{5}{subsection.13}%
+\contentsline {subsection}{\numberline {2.2.5}Gestion des sessions de fonctionnement}{5}{subsection.14}%
+\contentsline {subsection}{\numberline {2.2.6}Suivi de la production}{5}{subsection.15}%
+\contentsline {subsection}{\numberline {2.2.7}Communication temps réel}{5}{subsection.16}%
+\contentsline {section}{\numberline {2.3}Besoins non fonctionnels}{5}{section.17}%
+\contentsline {subsection}{\numberline {2.3.1}Fiabilité}{6}{subsection.18}%
+\contentsline {subsection}{\numberline {2.3.2}Sécurité}{6}{subsection.19}%
+\contentsline {subsection}{\numberline {2.3.3}Performance}{6}{subsection.20}%
+\contentsline {subsection}{\numberline {2.3.4}Évolutivité}{6}{subsection.21}%
+\contentsline {subsection}{\numberline {2.3.5}Maintenabilité}{6}{subsection.22}%
+\contentsline {subsection}{\numberline {2.3.6}Ergonomie}{6}{subsection.23}%
+\contentsline {section}{\numberline {2.4}Schéma d'enchaînement des données}{6}{section.24}%
+\contentsline {section}{\numberline {2.5}Architecture du système}{7}{section.25}%
+\contentsline {section}{\numberline {2.6}Protocoles IoT}{7}{section.31}%
+\contentsline {subsection}{\numberline {2.6.1}MQTT}{8}{subsection.32}%
+\contentsline {subsection}{\numberline {2.6.2}HTTP/HTTPS}{8}{subsection.33}%
+\contentsline {subsection}{\numberline {2.6.3}WebSocket}{8}{subsection.34}%
+\contentsline {section}{\numberline {2.7}Choix du protocole}{8}{section.35}%
+\contentsline {section}{\numberline {2.8}Diagramme UML}{9}{section.36}%
+\contentsline {subsection}{\numberline {2.8.1}Diagramme de cas d'utilisation}{9}{subsection.37}%
+\contentsline {subsection}{\numberline {2.8.2}Diagramme d'activité}{9}{subsection.38}%
+\contentsline {subsection}{\numberline {2.8.3}Diagramme de séquence}{9}{subsection.39}%
+\contentsline {section}{\numberline {2.9}Conclusion}{9}{section.40}%
+\contentsline {chapter}{\numberline {3}Réalisation}{11}{chapter.41}%
+\contentsline {section}{\numberline {3.1}Introduction}{11}{section.42}%
+\contentsline {section}{\numberline {3.2}Outils et logiciels utilisés}{11}{section.43}%
+\contentsline {subsection}{\numberline {3.2.1}Arduino IDE}{11}{subsection.44}%
+\contentsline {subsection}{\numberline {3.2.2}Visual Studio Code}{12}{subsection.46}%
+\contentsline {subsection}{\numberline {3.2.3}Symfony}{12}{subsection.48}%
+\contentsline {subsection}{\numberline {3.2.4}React}{12}{subsection.50}%
+\contentsline {subsection}{\numberline {3.2.5}React Native et Expo}{13}{subsection.52}%
+\contentsline {subsection}{\numberline {3.2.6}PostgreSQL}{13}{subsection.54}%
+\contentsline {subsection}{\numberline {3.2.7}Docker}{13}{subsection.56}%
+\contentsline {subsection}{\numberline {3.2.8}Git et GitHub}{13}{subsection.58}%
+\contentsline {subsection}{\numberline {3.2.9}Outils de conception}{14}{subsection.60}%
+\contentsline {subsubsection}{\numberline {3.2.9.1}SolidWorks}{14}{subsubsection.61}%
+\contentsline {subsubsection}{\numberline {3.2.9.2}Fritzing}{14}{subsubsection.63}%
+\contentsline {section}{\numberline {3.3}Matériel utilisé}{14}{section.65}%
+\contentsline {subsection}{\numberline {3.3.1}Arduino Mega}{15}{subsection.66}%
+\contentsline {subsection}{\numberline {3.3.2}ESP32 DEVKIT V1}{15}{subsection.68}%
+\contentsline {subsection}{\numberline {3.3.3}Moteur pas à pas}{15}{subsection.70}%
+\contentsline {subsection}{\numberline {3.3.4}Module moteur pas à pas A4988}{16}{subsection.72}%
+\contentsline {subsection}{\numberline {3.3.5}Système de chauffage}{16}{subsection.74}%
+\contentsline {subsection}{\numberline {3.3.6}Capteur de température}{16}{subsection.76}%
+\contentsline {subsection}{\numberline {3.3.7}Module de puissance BTS7960}{17}{subsection.77}%
+\contentsline {subsection}{\numberline {3.3.8}Convertisseur de niveau logique TXS0108}{17}{subsection.79}%
+\contentsline {subsection}{\numberline {3.3.9}Module convertisseur XL6009E1}{17}{subsection.81}%
+\contentsline {subsection}{\numberline {3.3.10}Alimentation}{18}{subsection.83}%
+\contentsline {section}{\numberline {3.4}Processus du système}{18}{section.84}%
+\contentsline {subsection}{\numberline {3.4.1}Préparation du matériau}{18}{subsection.85}%
+\contentsline {subsection}{\numberline {3.4.2}Mise en température}{18}{subsection.86}%
+\contentsline {subsection}{\numberline {3.4.3}Extrusion}{18}{subsection.87}%
+\contentsline {subsection}{\numberline {3.4.4}Transmission des données}{18}{subsection.88}%
+\contentsline {subsection}{\numberline {3.4.5}Supervision}{19}{subsection.89}%
+\contentsline {subsection}{\numberline {3.4.6}Fin de production}{19}{subsection.90}%
+\contentsline {section}{\numberline {3.5}Interface utilisateur}{19}{section.91}%
+\contentsline {subsection}{\numberline {3.5.1}Application web}{19}{subsection.92}%
+\contentsline {subsection}{\numberline {3.5.2}Application mobile}{19}{subsection.93}%
+\contentsline {subsection}{\numberline {3.5.3}Communication avec le backend}{19}{subsection.94}%
+\contentsline {section}{\numberline {3.6}Schéma et câblage}{20}{section.95}%
+\contentsline {subsection}{\numberline {3.6.1}Communication Arduino Mega -- ESP32}{20}{subsection.96}%
+\contentsline {subsection}{\numberline {3.6.2}Commande du moteur}{20}{subsection.97}%
+\contentsline {subsection}{\numberline {3.6.3}Contrôle de la température}{21}{subsection.98}%
+\contentsline {section}{\numberline {3.7}Conclusion}{21}{section.99}%
+\contentsline {chapter}{Conclusion générale}{22}{chapter*.100}%
+\contentsline {chapter}{Bibliographie}{23}{chapter*.100}%

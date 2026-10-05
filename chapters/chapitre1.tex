@@ -1,0 +1,126 @@
+% =========================================================
+% CHAPITRE 1 — DESCRIPTION DU PROJET
+% =========================================================
+
+\section{Introduction}
+
+Le développement durable et la réduction des déchets plastiques constituent
+aujourd'hui des enjeux importants sur les plans environnemental, économique
+et technologique. Parmi les matières plastiques les plus utilisées, le
+polyéthylène téréphtalate (PET) occupe une place importante, notamment dans
+la fabrication des bouteilles et des emballages.
+
+Le PET présente cependant l'avantage d'être recyclable et peut être valorisé
+afin de produire de nouveaux matériaux. Dans le domaine de la fabrication
+additive, le plastique recyclé peut notamment être transformé en filament
+destiné à l'impression 3D. Cette approche permet de donner une seconde vie
+aux déchets plastiques tout en réduisant la consommation de matière première.
+
+C'est dans ce contexte que s'inscrit le projet \textit{3awedlou}, une
+solution IoT dédiée au recyclage du PET et à sa transformation en filament
+pour impression 3D. Le projet associe une partie matérielle permettant les
+différentes étapes du processus de transformation à une architecture
+logicielle destinée à la supervision et au suivi des données de la machine.
+
+L'objectif de ce projet ne se limite donc pas à la réalisation d'une
+machine de transformation du plastique. Il vise également à intégrer les
+principes de l'Internet des Objets afin de rendre le système connecté,
+supervisable et capable de fournir des informations sur son fonctionnement.
+
+\section{Problématique}
+
+La gestion des déchets plastiques représente un défi important en raison de
+leur volume, de leur durée de dégradation et de leur utilisation massive
+dans de nombreux secteurs. Le PET, largement présent dans les bouteilles
+plastiques, constitue une matière particulièrement intéressante pour la
+valorisation en raison de ses propriétés et de sa recyclabilité.
+
+Cependant, transformer des déchets plastiques en un matériau utilisable
+pour l'impression 3D nécessite plusieurs opérations successives. Le
+plastique doit notamment être préparé, chauffé, fondu et extrudé de manière
+contrôlée afin d'obtenir un filament présentant des caractéristiques
+adaptées à son utilisation.
+
+Une difficulté supplémentaire réside dans le contrôle et la supervision de
+ces différentes opérations. La température, le fonctionnement du moteur,
+l'état de la machine et les paramètres de production doivent pouvoir être
+surveillés afin d'améliorer la fiabilité du système et d'identifier
+rapidement les éventuels problèmes.
+
+La problématique principale de ce projet peut ainsi être formulée comme
+suit :
+
+\begin{quote}
+\textit{Comment concevoir et réaliser une machine connectée capable de
+transformer des déchets PET en filament pour impression 3D tout en
+permettant le contrôle, la supervision et la collecte des données de son
+fonctionnement ?}
+\end{quote}
+
+Cette problématique implique donc à la fois des considérations mécaniques,
+électroniques, informatiques et liées à l'Internet des Objets.
+
+\section{Solution Proposée}
+
+Afin de répondre à cette problématique, le projet propose la conception et
+la réalisation d'un système de recyclage du PET intégrant une architecture
+IoT.
+
+La solution repose sur une machine physique chargée d'assurer la
+transformation du plastique. La partie matérielle comprend notamment un
+système de chauffage et de contrôle de température, un moteur pas à pas
+destiné à l'extrusion du matériau ainsi que différents éléments
+électroniques permettant le pilotage et la mesure des paramètres de
+fonctionnement.
+
+La commande du système est assurée par un microcontrôleur Arduino Mega.
+Celui-ci prend en charge une partie du contrôle local de la machine,
+notamment la gestion du moteur et du système de chauffage. Un ESP32 est
+également intégré à l'architecture afin d'assurer les fonctions de
+communication et de connectivité du système.
+
+La communication entre les différents éléments permet de séparer les
+fonctions de contrôle temps réel de la machine et les fonctions de
+communication avec les services logiciels. Cette architecture facilite
+ainsi l'évolution du système et son intégration dans une infrastructure
+IoT.
+
+Sur le plan logiciel, le système est associé à une application permettant
+de superviser la machine et d'exploiter les données collectées. Le backend
+constitue l'intermédiaire entre les équipements connectés et les
+applications clientes. Il permet notamment de gérer les utilisateurs, les
+machines, les sessions de fonctionnement, les données de télémétrie et les
+informations relatives à la production.
+
+La communication IoT est basée sur le protocole MQTT, particulièrement
+adapté aux systèmes connectés grâce à son modèle de communication
+publish/subscribe et à sa faible surcharge. Les données provenant de la
+machine peuvent ainsi être transmises au backend afin d'être enregistrées
+et exploitées par les interfaces de supervision.
+
+L'architecture globale du système peut être représentée selon plusieurs
+niveaux : la machine et ses capteurs/actionneurs constituent la couche
+physique, les microcontrôleurs assurent le contrôle et la communication,
+le backend assure la gestion des données et les applications web et
+mobiles permettent leur visualisation et leur exploitation.
+
+Cette approche permet de transformer une machine de recyclage classique en
+un système connecté capable de fournir des informations en temps réel sur
+son fonctionnement. Elle constitue également une base évolutive pour
+l'ajout de nouvelles fonctionnalités telles que l'analyse des données,
+l'amélioration du contrôle du processus ou encore la maintenance
+préventive.
+
+\section{Conclusion}
+
+Dans ce chapitre, nous avons présenté le contexte général du projet
+\textit{3awedlou}, ainsi que la problématique liée à la valorisation des
+déchets PET et à leur transformation en filament pour impression 3D.
+
+La solution proposée repose sur l'association d'une machine de recyclage,
+de systèmes embarqués et d'une architecture IoT permettant le contrôle, la
+communication et la supervision du système.
+
+Après avoir présenté le projet et ses objectifs généraux, le chapitre
+suivant sera consacré à l'étude détaillée des besoins ainsi qu'à la
+conception matérielle et logicielle de la solution.
